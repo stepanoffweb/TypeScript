@@ -34,7 +34,7 @@
 
 ## Advanced TypeScript - some examples of use (1_advanced)
 
-*установка пакетов (за MaterializeCSS - отдельное спасибо, ибо самому было недосук :))
+*установка пакетов 
 *настройки компиляции .ts -> .js (>tsc --init => tsconfig.json{"exclude": ["./node_modules" // by default], 
 "include": ["./.../**/*",], "files": ["./fileName.ext"]} + tsc --watch(-w) === замечательно!) 
 * настройки конфигурации компилятора (compiler options: target | module | lib | sourceMap | removeComments | noEmitOnError | noImplicitAny | strictNullChecks |additionalChecks = стиль кода)
