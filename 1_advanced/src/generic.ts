@@ -26,7 +26,7 @@ function withCount<T extends ILength>(value: T): {value: T, count: string} {
   }
 }
 
-console.log(withCount('Hello, huilo!!!'));//{value: "Hello, huilo!!!", count: "В этом объекте 15 символов"}
+console.log(withCount('Hello, !!!'));//{value: "Hello!!!", count: "В этом объекте 15 символов"}
 console.log(withCount(['I', 'am', 'Array']));//value: Array(3), count: "В этом объекте 3 символов"}
 
 //==============
@@ -41,7 +41,7 @@ console.log(getObjectValue(person, 'name'));
 // console.log(getObjectValue(person, 'job'));//error TS2345: Argument of type '"job"' is not assignable to parameter of type '"name" | "age"'
 
 //==============
-class Collection<T > { //extends number | string | boolean запрещаем коллекции объектов, ибо одинаковые объекты имеют разные ссылки и remove не отработает - вызывает ошибку
+class Collection<T extends number | string | boolean> { // запрещаем коллекции объектов, ибо одинаковые объекты имеют разные ссылки и remove не отработает
   constructor(private _items: T[] = []) {}
   add(item: T) {
     this._items.push(item);
@@ -74,8 +74,7 @@ function createAndValidateCar(model: string, year: number): Car {
   return car as Car;
 }
 
-//=============
-//Защита от перезаписи элементов массивов и объектов, которые определены как const:
+//============= Защита от перезаписи элементов массивов и объектов, которые определены как const:
 const cars: Readonly<Array<string>> = ['Ford', 'Audi'];
 //cars.shift();//error TS2339: Property 'shift' does not exist on type 'readonly string[]'
 

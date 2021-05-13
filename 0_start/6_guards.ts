@@ -1,3 +1,4 @@
+//  если я правильно понял, контролируются типы параметров функций и меняется логика. в чем принципиальность - хз
 function strip(x: string | number) {
   if (typeof x === 'number') {
     return x.toFixed(2);
@@ -14,7 +15,7 @@ class MyError {
   message = 'error message'
 }
 
-function handle(res: MyResponse | MyError) {
+function handle(res: MyResponse | MyError) {  // ? классы - не типы и не интерфейсы...
   if (res instanceof MyResponse) {
     return {
       info: res.header + res.result

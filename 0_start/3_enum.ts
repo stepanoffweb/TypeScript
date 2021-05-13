@@ -1,12 +1,11 @@
+// структурируют код с однотипными элементами
 enum Membership {
   Simple,
   Standard,
   Premium
 }
-const membership = Membership.Standard
-console.log(membership);// 1
-const membershipReverse = Membership[2];
-console.log(membershipReverse);
+const membership = Membership.Standard// 1
+const membershipReverse = Membership[2];// Premium
 
 enum SocialMedia {
   VK = 'VKontakte',
@@ -14,5 +13,4 @@ enum SocialMedia {
   INST = 'Instagram'
 }
 
-const social1 = SocialMedia.VK;
-console.log(social1);// VKontakte
+const social1 = SocialMedia.VK; // VKontakte

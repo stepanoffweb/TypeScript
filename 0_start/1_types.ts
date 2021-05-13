@@ -1,5 +1,4 @@
 // const str: string = 'Hello!!!';
-// console.log(str);
 
 let int: number = 55;
 int = 4.5;
@@ -21,20 +20,18 @@ function sayMyName(name: string): void {// void == не возвращает н�
 }
 sayMyName('Not Heisenberg');
 
-//Never
-//1. функция возвращает ошибку
-//2. Ф-ция постоянно что-то делает (?)
+//Never 1. функция возвращает ошибку2. Ф-ция бесконечно что-то делает
 function throwError(message: string): never {
   throw new Error(message);
 }
-// function infinite(): never {
-//   while(true) {
-//   }
-// }
+function infinite(): never {
+  // while(true) {
+  // }
+}
 
-//Type
+//Type - собственные типы более удобны в конкретном проекте
 type Login = string;
-const log1: Login = 'fucking';
+const log1: Login = 'goodman';
 //const log2: Login = 1234;//error TS2322: Type '1234' is not assignable to type 'string'
 type ID = string | number;
 const id1: ID = '1234';

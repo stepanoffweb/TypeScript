@@ -1,3 +1,4 @@
+//  если я правильно понял, контролируются типы параметров функций и меняется логика. в чем принципиальность - хз
 function strip(x) {
     if (typeof x === 'number') {
         return x.toFixed(2);
@@ -35,4 +36,4 @@ function setAlertType(type) {
     //...
 }
 setAlertType('success');
-setAlertType('default'); //
+setAlertType('default'); //error TS2345: Argument of type '"default"' is not assignable to parameter of type 'AlertType'

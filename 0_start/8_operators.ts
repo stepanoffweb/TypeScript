@@ -1,3 +1,4 @@
+// новые операторы - keyof|Exclude|Pick
 interface Person {
   name: string
   age: number

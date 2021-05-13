@@ -1,25 +1,16 @@
 // function Log(constructor: Function) {
 //   console.log(constructor); //class Component {} вызван, хотя инстанс не создан
 // }
-
 // function Log2(target: any, propName: string | Symbol) {
-//   console.log(target);
-//   console.log(propName);
 // }
-
 // function Log3(target: any, propName: string | Symbol, descriptor: PropertyDescriptor) {
-//   console.log(target);
-//   console.log(propName);
-//   console.log(descriptor);
 // }
 interface ComponentDecorator {
   selector: string
   template: string
 }
 function Component(config: ComponentDecorator) {
-  return function
-  <T extends {new(...args: any[]): object}>
-  (Constructor: T) {
+  return function <T extends {new(...args: any[]): object}>(Constructor: T) {
     return class extends Constructor {
       constructor (...args: any[]) {
         super(...args);
@@ -62,21 +53,20 @@ class CardComponent {
   //   return this.name;
   // }
 
-  // @log3
+  // @Log3
   @Bind
   logName(): void {
     console.log(`Component name: ${this.name}`);
   }
 }
 
-const card = new CardComponent('My Card Component');//при создании инстанс размещает в DOM шаблон, переданный через декоратор
+const card = new CardComponent('My Card Component');// при создании инстанс размещает в DOM шаблон, переданный через декоратор
 const btn = document.querySelector('#btn')!;
 // btn.addEventListener('click', card.logName.bind(card));
 btn.addEventListener('click', card.logName);
 
 //===============
-type ValidatorType = 'required' | 'email'
-
+type ValidatorType = 'required'|'email'
 interface ValidatorConfig {
   [prop: string]: {
     [validateProp: string]: ValidatorType

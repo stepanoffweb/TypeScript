@@ -16,7 +16,6 @@ const rect1: IRect = {
 }
 rect1.color = '#fff';
 //rect1.id = '54321';//error TS2540: Cannot assign to 'id' because it is a read-only property
-console.log(rect1);
 //приведение к типу - два варианта:
 const rect2 = {} as IRect;
 const rect3 = <IRect>{};
@@ -36,7 +35,6 @@ const rect4: IRectWithArea = {
   }
 }
 rect4.getArea();
-// console.log(rect4.getArea());
 //============== взаимодействие с классами
 interface IClock {
   time: Data
@@ -52,24 +50,10 @@ class Clock implements IClock {
 
 //==============
 interface IStyles {
-  [key: string]: string
+  [key: string]: string // динамическая типизация ключей
 }
-const css: Styles = {
+const css: IStyles = {
   border: '1px solid red',
   margin: '50px',
   display: 'flex'
 }
-//==============
-
-
-
-
-
-
-
-
-
-
-
-
-
