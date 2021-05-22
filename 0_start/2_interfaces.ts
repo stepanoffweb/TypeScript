@@ -57,3 +57,20 @@ const css: IStyles = {
   margin: '50px',
   display: 'flex'
 }
+// ======== Type Assertion (considered harmful!) in compile time  vs Type custing (runtime)
+interface Foo {
+    bar: number;
+    bas: string;
+}
+var foo = {} as Foo;
+// ahhhh .... forget something? ! the compiler will not protect you from forgetting to actually add the properties you promised
+foo.bar = 123;
+foo.bas = 'hello';
+var foo = <Foo>{
+    // the compiler will provide autocomplete for properties of Foo. But it is easy for the developer to forget adding all the properties
+    // Also this code is likely to break if Foo gets refactored (e.g. a new property added)?? для этого и делают - в одном месте поменял, везде покажет
+};
+//  if you forget a property the compiler will not complain. It is better if you do the following:
+var foo: Foo = {
+    // the compiler will provide AUTOCOMPLETE for properties of Foo
+};
