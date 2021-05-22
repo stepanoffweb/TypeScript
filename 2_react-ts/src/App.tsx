@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Navbar } from "./components/Navbar"
 import { TodoForm } from "./components/TodoForm"
 import { TodoList } from "./components/TodoList"
@@ -7,6 +7,17 @@ import { ITodo } from "./interfaces"
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([])
+
+  useEffect(() => {
+    const todosInitial = JSON.parse(
+      window.localStorage.getItem("taskList") || "[]"
+    ) as ITodo[]
+    setTodos(prev => (prev = todosInitial))
+  }, [])
+  useEffect(() => {
+    const todosJson: string = JSON.stringify(todos)
+    window.localStorage.setItem("taskList", todosJson)
+  }, [todos])
 
   const addHandler = (title: string) => {
     const todo = {
@@ -24,8 +35,10 @@ const App: React.FC = () => {
     setTodos(prev => (prev = newTodos))
   }
   const removeHandler = (id: number) => {
-    let newTodos = todos.filter(todo => todo.id !== id)
-    setTodos(prev => (prev = newTodos))
+    if (window.confirm("Really???")) {
+      let newTodos = todos.filter(todo => todo.id !== id)
+      setTodos(prev => (prev = newTodos))
+    }
   }
 
   return (

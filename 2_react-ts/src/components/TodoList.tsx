@@ -8,15 +8,17 @@ type TodoListProps = {
 }
 
 export const TodoList: FC<TodoListProps> = ({ todos, onToggle, onRemove }) => {
-  const changeHadler = (taskId: number) => {
-    onToggle(taskId)
-  }
-  const deleteHandler = (taskId: number) => {
+  const deleteHandler = (e: React.MouseEvent, taskId: number) => {
+    e.preventDefault()
     onRemove(taskId)
   }
+  // if (todos.length === 0) {
+  //   return <h2 className="center">Никуя нету исчо!</h2>
+  // }
 
   return (
     <ul>
+      {todos.length === 0 && <h2 className="center">Ничего пока нет !</h2>}
       {todos.map(todo => {
         const classes = ["todo", "lime accent-3"]
         if (todo.completed) {
@@ -27,13 +29,13 @@ export const TodoList: FC<TodoListProps> = ({ todos, onToggle, onRemove }) => {
             <label>
               <input
                 type="checkbox"
-                onChange={() => changeHadler(todo.id)}
+                onChange={() => onToggle(todo.id)}
                 checked={todo.completed}
               />
               <span>{todo.title}</span>
               <i
                 className="material-icons red-text"
-                onClick={() => deleteHandler(todo.id)}
+                onClick={e => deleteHandler(e, todo.id)}
               >
                 delete
               </i>
