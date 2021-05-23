@@ -12,13 +12,14 @@ export const TodoList: FC<TodoListProps> = ({ todos, onToggle, onRemove }) => {
     e.preventDefault()
     onRemove(taskId)
   }
-  // if (todos.length === 0) {
-  //   return <h2 className="center">Никуя нету исчо!</h2>
-  // }
 
   return (
     <ul>
-      {todos.length === 0 && <h2 className="center">Ничего пока нет !</h2>}
+      {todos.length === 0 && (
+        <h2 className="center" style={{ paddingBottom: "10px" }}>
+          Всё сделано !
+        </h2>
+      )}
       {todos.map(todo => {
         const classes = ["todo", "lime accent-3"]
         if (todo.completed) {

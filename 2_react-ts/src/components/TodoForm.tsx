@@ -22,17 +22,15 @@ export const TodoForm: FC<ITodoFormProps> = props => {
     <div className="section  lime accent-2 mt-1">
       <div className="input-field col s12">
         <input
-          // defaultValue="Hello"
-          // onFocus="true"
           value={title}
           onChange={changeHadler}
           onKeyPress={keypressHandle}
           type="text"
           id="task"
-          placeholder="Моя офигенно важная задача"
+          placeholder="Чрезвычайно важная задача"
         />
         <label htmlFor="task" className="active">
-          Введи задачу
+          Input the task
         </label>
       </div>
     </div>

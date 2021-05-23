@@ -1,57 +1,23 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
+import { Route, Switch } from "react-router"
+import { BrowserRouter } from "react-router-dom"
 import { Navbar } from "./components/Navbar"
-import { TodoForm } from "./components/TodoForm"
-import { TodoList } from "./components/TodoList"
+import AboutPage from "./pages/AboutPage"
+import TasksPage from "./pages/TasksPage"
 import "./index.css"
-import { ITodo } from "./interfaces"
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<ITodo[]>([])
-
-  useEffect(() => {
-    const todosInitial = JSON.parse(
-      window.localStorage.getItem("taskList") || "[]"
-    ) as ITodo[]
-    setTodos(prev => (prev = todosInitial))
-  }, [])
-  useEffect(() => {
-    const todosJson: string = JSON.stringify(todos)
-    window.localStorage.setItem("taskList", todosJson)
-  }, [todos])
-
-  const addHandler = (title: string) => {
-    const todo = {
-      id: Date.now(),
-      title: title,
-      completed: false,
-    }
-    setTodos(prev => [todo, ...prev])
-  }
-  const toggleHandler = (id: number) => {
-    let newTodos = todos.map(todo => {
-      if (todo.id === id) todo.completed = !todo.completed
-      return todo
-    })
-    setTodos(prev => (prev = newTodos))
-  }
-  const removeHandler = (id: number) => {
-    if (window.confirm("Really???")) {
-      let newTodos = todos.filter(todo => todo.id !== id)
-      setTodos(prev => (prev = newTodos))
-    }
-  }
-
   return (
     <>
-      <Navbar />
-      <div className="container">
-        <TodoForm onAdd={addHandler} />
-        <TodoList
-          todos={todos}
-          onToggle={toggleHandler}
-          onRemove={removeHandler}
-        />
-      </div>
+      <BrowserRouter>
+        <Navbar />
+        <div className="container lime accent-1">
+          <Switch>
+            <Route component={AboutPage} path="/about" />
+            <Route component={TasksPage} path="/" exact />
+          </Switch>
+        </div>
+      </BrowserRouter>
     </>
   )
 }
