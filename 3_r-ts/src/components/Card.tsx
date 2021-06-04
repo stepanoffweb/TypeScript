@@ -9,7 +9,14 @@ interface CardProps {
   width: string
   height: string
   option?: CardOptions
-  keyPressHandler: (num: number) => void
+  clickBlockHandler?: (e: React.MouseEvent<HTMLElement>, num: number) => void
+  text?: string
+  draggable?: boolean
+  isDragged?: boolean
+  dragHandler?: (e: React.DragEvent<HTMLDivElement>) => void
+  dropHandler?: (e: React.DragEvent<HTMLDivElement>) => void
+  leaveHandler?: (e: React.DragEvent<HTMLDivElement>) => void
+  dragWirthPreventHAndler?: (e: React.DragEvent<HTMLDivElement>) => void
   // children: React.ReactNode | React.ReactChild
 }
 const Card: FC<CardProps> = ({
@@ -17,22 +24,39 @@ const Card: FC<CardProps> = ({
   height,
   children,
   option,
-  keyPressHandler,
+  text,
+  clickBlockHandler,
+  draggable,
+  isDragged,
+  dragHandler,
+  dropHandler,
+  leaveHandler,
+  dragWirthPreventHAndler,
 }) => {
   const [num, setNum] = useState(5)
   return (
     <div
-      onClick={() => keyPressHandler(num)}
+      onClick={e => clickBlockHandler && clickBlockHandler(e, num)}
+      draggable={draggable}
+      onDrag={dragHandler}
+      onDrop={dropHandler}
+      onDragLeave={leaveHandler}
+      onDragOver={dragWirthPreventHAndler}
       style={{
         width,
         height,
-        background: option === CardOptions.primary ? "#0aa" : "teal",
+        background:
+          isDragged === true
+            ? "red"
+            : option === CardOptions.primary
+            ? "#05a"
+            : "teal",
         border: option === CardOptions.outlined ? "1px solid red" : "none",
         margin: "0 auto",
       }}
     >
       {children}
-      <p>Всякое</p>
+      <p>{text}</p>
     </div>
   )
 }
