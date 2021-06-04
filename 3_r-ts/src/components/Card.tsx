@@ -28,6 +28,7 @@ const Card: FC<CardProps> = ({
         height,
         background: option === CardOptions.primary ? "#0aa" : "teal",
         border: option === CardOptions.outlined ? "1px solid red" : "none",
+        margin: "0 auto",
       }}
     >
       {children}
