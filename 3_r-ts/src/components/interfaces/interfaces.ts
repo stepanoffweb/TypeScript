@@ -5,9 +5,15 @@ interface IAddress {
 }
 
 export interface IUser {
-  key?: number
+  // key?: number
   id: number
   name: string
   email?: string
   address: IAddress
+}
+
+export interface ITodo {
+  id: number
+  title: string
+  completed: boolean
 }
