@@ -57,6 +57,9 @@ const Card: FC<CardProps> = ({
     >
       {children}
       <p>{text}</p>
+      <h3 style={{ fontSize: 28, color: "#ff0", textAlign: "center" }}>
+        {draggable ? "I'm draggable!!!" : "I am a TARGET ;("}
+      </h3>
     </div>
   )
 }

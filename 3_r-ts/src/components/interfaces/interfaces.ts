@@ -10,6 +10,9 @@ export interface IUser {
   name: string
   email?: string
   address: IAddress
+  phone?: string
+  website?: string
+  company?: { name: string; catchPhrase: string }
 }
 
 export interface ITodo {

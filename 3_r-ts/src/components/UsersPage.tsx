@@ -1,6 +1,6 @@
 import axios from "axios"
 import React, { FC, useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useHistory } from "react-router"
 import { IUser } from "./interfaces/interfaces"
 import ListItems from "./ListItems"
 import UserItem from "./UserItem"
@@ -25,7 +25,13 @@ const defaultUsers = [
 ]
 const UsersPage: FC = () => {
   const [reqUsers, setReqUsers] = useState<IUser[] | null>(defaultUsers)
-  // const params = useParams<UsersPageParams>()
+  const users = reqUsers || defaultUsers
+  const history = useHistory()
+
+  const handleClick = (user: IUser) => {
+    // console.log("userId type:", typeof user.id)
+    history.push("users/" + user.id)
+  }
 
   useEffect(() => {
     fetchUsers()
@@ -41,9 +47,16 @@ const UsersPage: FC = () => {
       alert(error)
     }
   }
-  const renderUser = (user: IUser) => <UserItem user={user} />
+  const renderUser = (user: IUser) => (
+    <UserItem handleClick={handleClick} user={user} key={user.id} />
+  )
 
-  return <ListItems items={reqUsers || defaultUsers} renderItem={renderUser} />
+  return (
+    <>
+      <h2 style={{ marginTop: 45, textAlign: "center" }}>USERS LIST</h2>
+      <ListItems items={users} renderItem={renderUser} />
+    </>
+  )
 }
 
 export default UsersPage

@@ -1,18 +1,22 @@
 import axios from "axios"
 import React, { useEffect, useRef, useState } from "react"
 import Card, { CardOptions } from "./components/Card"
-import { IUser } from "./components/interfaces/interfaces"
-import UsersList from "./components/UsersList"
 
 export default function App() {
   const [value, setValue] = useState<string>("")
   const [isDragged, setIsDragged] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
+  }
+  const handleBtnClick = () => {
+    alert((inputRef.current && inputRef.current.value) || "Empty")
+    setValue("")
+  }
+
   const clickBlockHandler = (e: React.MouseEvent<HTMLElement>, num: number) =>
-    console.log("click " + e.target + ++num) // sorry, but only for sake of mastering skills...
+    e.target !== inputRef.current && alert("click " + e.target + ++num) // sorry, but only for sake of mastering skills...
 
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
     // console.log("DRAGGED", e.target + "is almost dragged " + isDragged)
@@ -32,9 +36,6 @@ export default function App() {
     setIsDragged(isDragged => (isDragged = false))
     console.log("DROPPED", e.target + "is dropped " + isDragged)
   }
-  const handleBtnClick = () => {
-    alert((inputRef.current && inputRef.current.value) || "Empty") // inputRef.current?.value
-  }
 
   return (
     <>
@@ -50,8 +51,9 @@ export default function App() {
         >
           <input
             type="text"
-            defaultValue="Let's go boozing!!!"
-            // onFocus={true}
+            // defaultValue="Let's go boozing!!!"
+            value={value || "Let's go boozing!!!"}
+            // onFocus={() => setValue("")}
             placeholder="Input your thoughts"
             onChange={e => changeHandler(e)}
             ref={inputRef}

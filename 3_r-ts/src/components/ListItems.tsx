@@ -1,5 +1,4 @@
 import React from "react"
-
 interface ListItemsProps<T> {
   items: T[]
   renderItem: (item: T) => React.ReactNode

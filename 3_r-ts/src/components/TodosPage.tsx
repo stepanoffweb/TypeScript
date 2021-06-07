@@ -24,7 +24,12 @@ const TodosPage: FC = () => {
   }
   const renderTodo = (todo: ITodo) => <TodoItem todo={todo} key={todo.id} />
 
-  return <ListItems items={reqTodos || defaultTodos} renderItem={renderTodo} />
+  return (
+    <>
+      <h2 style={{ marginTop: 45, textAlign: "center" }}>TODOS LIST</h2>
+      <ListItems items={reqTodos || defaultTodos} renderItem={renderTodo} />
+    </>
+  )
 }
 
 export default TodosPage
