@@ -9,3 +9,8 @@
 ## ToDo React+TypeScript SPA
 *create-react-app, Material-ui, Router, LocalStorage
 
+## Simple nonsense React+TypeScript SPA for training sake
+*create-react-app, react-router-dom, axios.  MouseEvents, DragEvents, ChangeEvents, BrowserRouter, UseHistory, useParams, useRef, UseState.
+
+
+
