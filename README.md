@@ -1,11 +1,12 @@
-# Typescript learning
-## TypeScript fundamentals (0_start)
-Знакомство с элементами языка - types (string, number, any, enums, tuple), создание типов Type, Interface, Guards, Generics. статическая типизация в функциях, классах
-
-## Advanced TypeScript - some examples of use (1_advanced)
-
-Знакомство с TS config, Generics, Decorators 
-
-## ToDo React+TypeScript SPA
-*create-react-app, Material-ui, Router, LocalStorage
+# Typescript learning 
+- Разворачиваем приложение create-react-app
+ - Первый компонент. Типизация пропсов. Interface CardProps
+ - React.FunctionComponent - React.FC - FC
+ - Компонент UserList. IUser, IAddress
+  - Компонент UserItem. 
+ - Типизация запроса axios. Типизация хука UseState()
+ - Переиспользуемый компонент List. Generics, Обобщенные типы в typescript
+ - Типизация событий. MouseEvents, DragEvents, ChangeEvents
+ - Типизация хука useRef. Неуправляемый компонент
+ - Типизация react-router-dom. UseHistory, useParams, BrowserRouter
 
