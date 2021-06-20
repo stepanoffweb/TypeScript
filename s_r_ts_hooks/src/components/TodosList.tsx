@@ -6,7 +6,9 @@ export const TodosList: FC = () => {
   const { page, todos, loading, error, limit } = useTypedSelector(
     state => state.todos
   )
-  const { fetchTodos } = useActions()
+  const { fetchTodos, setTodoPage } = useActions()
+  const pages = [1, 2, 3, 4, 5]
+
   useEffect(() => {
     fetchTodos(page, limit)
   }, [page])
@@ -23,6 +25,21 @@ export const TodosList: FC = () => {
           {todo.id} - {todo.title}
         </li>
       ))}
+      <div style={{ display: "flex" }}>
+        {pages.map(p => (
+          <div
+            onClick={() => setTodoPage(p)}
+            key={p}
+            style={{
+              border: p === page ? "1px solid green" : "1px solid lightgray",
+              padding: 10,
+              cursor: "pointer",
+            }}
+          >
+            {p}
+          </div>
+        ))}
+      </div>
     </ul>
   )
 }
